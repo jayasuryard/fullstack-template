@@ -2,6 +2,7 @@ const express = require('express');
 require('dotenv').config();
 const morgan = require('morgan');
 const prisma = require('./prisma-client');
+const routes = require('./routes');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -14,6 +15,9 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
+
+// API Routes
+app.use('/api', routes);
 
 // Start server with database connection check
 const startServer = async () => {
